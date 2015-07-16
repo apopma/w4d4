@@ -1,0 +1,30 @@
+<h1>New track from <%= @album.band.name %></h1>
+
+<form action='<%= tracks_url %>' method="POST">
+  <%= render partial: 'shared/auth' %>
+
+  <label for='track_title'>Title:</label>
+  <input type='text' name='track[title]' id='track_title'>
+  <br>
+
+  <label for='track_track_number'>Track #</label>
+  <input type='number' min=1
+         name='track[track_number]' id='track_track_number'>
+  <br>
+
+  <label for='track_album_id'>Album for this track:</label>
+  <select name='track[album_id]' id='track_album_id'>
+    <% @albums.each do |album| %>
+      <option <%= params[:album_id].to_i == album.id ? "selected" : "" %>
+       value="<%= album.id %>">
+        <%= album.title %>
+      </option>
+    <% end %>
+  </select><br>
+
+  <label for 'track_lyrics'>Enter your award-winning lyrics below:<br></label>
+  <textarea name='track[lyrics]'></textarea>
+  <br><br>
+
+  <input type='submit' value='Make the music happen'>
+</form>
