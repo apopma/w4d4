@@ -1,4 +1,5 @@
 <h2><%= @album.title %></h2>
+<h3>an album by <%= @album.band.name %></h3>
 <h5>
   <i><%= link_to "back to band", band_url(@album.band_id) %></i> |
   <i><%= link_to "edit this album", edit_album_url(@album.id) %></i> |
@@ -11,10 +12,10 @@
      %></i>
 </h5>
 
-<ul>
+<ol>
   <% @album.tracks.sort_by { |t| t.track_number }.each do |track| %>
     <li>
       <%= link_to "#{track.title}", track_url(track.id) %>
     </li>
   <% end %>
-</ul>
+</ol>

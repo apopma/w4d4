@@ -1,7 +1,8 @@
 <h2><%= @track.title %></h2>
+<h3>by <%= @track.band.name %>, on '<%= @track.album.title %>'</h3>
 <h5>
   <i><%= link_to "back to album", album_url(@track.album_id) %></i> |
-  <i>(edit this track)</i> |
+  <i><%= link_to "edit this track", edit_track_url(@track.id) %></i> |
   <i><%= link_to "destroy this track", track_url(@track.id), method: :delete,
          data: {
          confirm: "Leave '#{@track.title}' on the cutting room floor?" }
