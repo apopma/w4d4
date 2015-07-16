@@ -1,4 +1,5 @@
 <h1>New Album</h1>
+<h5><i><%= link_to "back to index", bands_url %></i></h5>
 
 <form action='<%= albums_url %>' method='POST'>
   <%= render partial: 'shared/auth' %>
@@ -6,7 +7,8 @@
   <label for='album_band_id'>Recording band:</label>
   <select name='album[band_id]' id='album_band_id'>
     <% @bands.each do |band| %>
-      <option value="<%= band.id %>">
+      <option <%= params[:band_id].to_i == band.id ? "selected" : "" %>
+       value="<%= band.id %>">
         <%= band.name %>
       </option>
     <% end %>

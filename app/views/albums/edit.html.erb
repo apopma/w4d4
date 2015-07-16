@@ -1,0 +1,40 @@
+<h1>Edit "<%= @album.title %>"</h1>
+<h5><i><%= link_to "back to index", bands_url %></i></h5>
+
+<form action='<%= album_url(@album.id) %>' method='POST'>
+  <input type='hidden' name="_method" value="PATCH">
+  <%= render partial: 'shared/auth' %>
+
+  <label for='album_band_id'>Recording band:</label>
+  <select name='album[band_id]' id='album_band_id'>
+    <% @bands.each do |band| %>
+      <option <%= params[:band_id].to_i == band.id ? "selected" : "" %>
+       value="<%= band.id %>">
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select><br>
+
+  Live album?
+  <label for='album_live_true'>yes</label>
+  <input type='radio'
+         name='album[live?]'
+         value=true
+         id='album_live_true'
+         <%= @album.live? ? "checked" : "" %>>
+
+  <label for='album_live_false'>no</label>
+  <input type='radio'
+         name='album[live?]'
+         value=false
+         id='album_live_false'
+         <%= @album.live? ? "" : "checked" %>>
+  <br>
+
+  <label for='album_title'>Record the album's new name: (make it better!)</label>
+  <input type='text' name='album[title]'
+         id='album_title' value='<%= @album.title %>'>
+  <br>
+
+  <input type='submit' value='Re-release your album!'>
+</form>

@@ -22,6 +22,26 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def edit
+    @album = Album.find(params[:id])
+    @bands = Band.all
+    render :edit
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    @bands = Band.all # hacky thing to fix missing @bands on redirect
+    old_name = @album.title
+
+    if @album.update_attributes(album_params)
+      flash[:success] = ["'#{old_name}' has been re-released as '#{@album.title}!'"]
+      redirect_to album_url(@album.id)
+    else
+      flash[:errors] = ["Oops. Something went wrong:"]
+      flash[:errors].concat @album.errors.full_messages
+      redirect_to edit_album_url(@album.id)
+    end
+  end
 
   private
   def album_params
