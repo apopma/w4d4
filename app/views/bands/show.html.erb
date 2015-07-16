@@ -1,7 +1,7 @@
 <h1><%= "#{@band.name}" %></h1>
 <h5>
   <i><%= link_to "back to index", bands_url %></i> |
-  <i>(edit this band)</i> |
+  <i><%= link_to "edit this band", edit_band_url(@band.id) %></i> |
   <i><%= link_to "create a new album", new_band_album_url(@band.id) %></i>
    |
   <i><%= link_to "destroy this band", band_url(@band.id), method: :delete,

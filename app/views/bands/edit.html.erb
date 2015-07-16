@@ -1,0 +1,13 @@
+<h1>Edit details for <%= @band.name %></h1>
+<i><h5><%= link_to "(back to index)", bands_url %></h5></i>
+
+<form action='<%= band_url(@band.id) %>' method='POST'>
+  <%= render partial: 'shared/auth' %>
+  <input type='hidden' name='_method' value='PATCH'>
+
+  <label for='band_name'>Enter <%= @band.name %>'s new name: (make it better!)</label>
+  <input type='text' name='band[name]' id='band_name'>
+  <br>
+
+  <input type='submit' value='Continue the rocking'>
+</form>

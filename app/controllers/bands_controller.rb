@@ -20,7 +20,8 @@ class BandsController < ApplicationController
       flash[:success] = ["#{@band.name} will make it big someday! Probably."]
       redirect_to band_url(@band.id)
     else
-      flash[:errors] = ["Oops. Something went wrong:"]
+      flash.now[:errors] = ["Oops. Something went wrong:"]
+      flash[:errors].concat @band.errors.full_messages
       render :new
     end
   end
@@ -30,6 +31,25 @@ class BandsController < ApplicationController
     @band.destroy!
     flash[:success] = ["#{@band.name} has broken up."]
     redirect_to bands_url
+  end
+
+  def edit
+    @band = Band.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @band = Band.find(params[:id])
+    old_name = @band.name
+
+    if @band.update_attributes(band_params)
+      flash[:success] = ["#{old_name} has been renamed to #{@band.name}."]
+      redirect_to band_url(@band.id)
+    else
+      flash.now[:errors] = "Oops. Something went wrong:"
+      flash[:errors].concat @band.errors.full_messages
+      render :edit
+    end
   end
 
   private
