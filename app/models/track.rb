@@ -3,5 +3,5 @@ class Track < ActiveRecord::Base
   validates :track_number, uniqueness: { scope: [:album_id, :track_number] }
 
   belongs_to :album
-  belongs_to :band, through: :album
+  has_one :band, through: :album
 end
