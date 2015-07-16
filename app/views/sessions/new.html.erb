@@ -1,0 +1,15 @@
+<h1>Sign in here!</h1>
+
+<form action='<%= new_session_url %>' method='POST'>
+  <%= render partial: 'shared/auth' %>
+
+  <label for='user_email'>Enter your email:</label>
+  <input type='text' name='user[emai]' id='user_email'>
+  <br><br>
+
+  <label for ='user_password'>Enter your password:</label>
+  <input type='password' name='user[password]' id='user_password'>
+  <br><br>
+
+  <input type='submit' value='Click to log in'>
+</form>
