@@ -1,4 +1,15 @@
 <h2><%= @album.title %></h2>
+<h5>
+  <i><%= link_to "back to band", band_url(@album.band_id) %></i> |
+  <i>(edit this album)</i> |
+  <i><%= link_to "create a new track", new_album_track_url(@album.id) %></i> |
+  <i><%= link_to "destroy this album", album_url(@album.id), method: :delete,
+         data: {
+         confirm:
+        "Consign '#{@album.title}' (and all its tracks) to the dustbin of history?"
+               }
+     %></i>
+</h5>
 
 <ul>
   <% @album.tracks.sort_by { |t| t.track_number }.each do |track| %>

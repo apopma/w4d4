@@ -1,4 +1,12 @@
-<h3><%= @track.title %></h3>
+<h2><%= @track.title %></h2>
+<h5>
+  <i><%= link_to "back to album", album_url(@track.album_id) %></i> |
+  <i>(edit this track)</i> |
+  <i><%= link_to "destroy this track", track_url(@track.id), method: :delete,
+         data: {
+         confirm: "Leave '#{@track.title}' on the cutting room floor?" }
+     %></i>
+</h5>
 
 <h4>Lyrics:</h4>
 <p>
