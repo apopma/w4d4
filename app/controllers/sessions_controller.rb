@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       render :new
     else
       login!(@user)
-      flash[:success] = ["Logged in successfully as #{@user.user_name}"]
+      flash[:success] = ["Logged in successfully as #{@user.email}"]
       redirect_to user_url(@user.id)
     end
   end
@@ -25,5 +25,10 @@ class SessionsController < ApplicationController
 
   def redirect_if_not_logged_in
     redirect_to new_session_url unless current_user
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :password)
   end
 end

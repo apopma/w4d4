@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>W4d4</title>
+  <title>MusicApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render partial: 'shared/messages' %>
 
-<%= yield %>
+  <% if logged_in? %>
+    <h5>
+      Logged in as <%= current_user.email %>
+      <%= link_to "(logout)", session_url, method: :delete %>
+    </h5>
+  <% else %>
+    <h5>Not logged in <%= link_to "(log in here!)", new_session_url %></h5>
+  <% end %>
+
+
+  <%= yield %>
 
 </body>
 </html>
