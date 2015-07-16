@@ -1,0 +1,12 @@
+<h1>Create a new band!</h1>
+<i><h5><%= link_to "(back to index)", bands_url %></h5></i>
+
+<form action='<%= bands_url %>' method='POST'>
+  <%= render partial: 'shared/auth' %>
+
+  <label for='band_name'>Enter your new band's name: (make it good!)</label>
+  <input type='text' name='band[name]' id='band_name'>
+  <br>
+
+  <input type='submit' value='Begin the rocking'>
+</form>
