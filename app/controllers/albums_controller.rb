@@ -43,6 +43,13 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy!
+    flash[:success] = ["All copies of #{@album.title} have been destroyed in a fit of artistic pique."]
+    redirect_to band_url(@album.band_id)
+  end
+
   private
   def album_params
     params.require(:album).permit(:title, :live?, :band_id)
