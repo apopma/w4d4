@@ -12,10 +12,8 @@
      %></i>
 </h5>
 
-<ol>
-  <% @album.tracks.sort_by { |t| t.track_number }.each do |track| %>
-    <li>
-      <%= link_to "#{track.title}", track_url(track.id) %>
-    </li>
-  <% end %>
-</ol>
+<% @album.tracks.sort_by { |t| t.track_number }.each do |track| %>
+  <p>
+    <%= track.track_number %>. <%= link_to "#{track.title}", track_url(track.id) %>
+  </p>
+<% end %>

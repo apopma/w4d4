@@ -1,5 +1,5 @@
 <h2><%= @track.title %></h2>
-<h3>by <%= @track.band.name %>, on '<%= @track.album.title %>'</h3>
+<h3>track <%= @track.track_number %> on '<%= @track.album.title %>' by <%= @track.band.name %></h3>
 <h5>
   <i><%= link_to "back to album", album_url(@track.album_id) %></i> |
   <i><%= link_to "edit this track", edit_track_url(@track.id) %></i> |
