@@ -43,6 +43,13 @@ class TracksController < ApplicationController
     end
   end
 
+  def destroy
+    @track = Track.find(params[:id])
+    @track.destroy!
+    flash[:success] = ["'#{@track.title}' didn't make it past QA."]
+    redirect_to album_url(@track.album_id)
+  end
+
   private
   def track_params
     params.require(:track)
