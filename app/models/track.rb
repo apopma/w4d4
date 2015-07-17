@@ -1,4 +1,5 @@
 class Track < ActiveRecord::Base
+  include TracksHelper
   validates :title, :album_id, :track_number, presence: true
   validates :track_number, uniqueness: { scope: [:album_id, :track_number] }
 
