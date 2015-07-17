@@ -1,0 +1,49 @@
+<h1>Edit "<%= @track.title %>"</h1>
+<h5><i><%= link_to "back to album", album_url(@track.album_id) %></i></h5>
+
+<form action='<%= track_url(@track.id) %>' method="POST">
+  <input type='hidden' name='_method' value="PATCH">
+  <%= render partial: 'shared/auth' %>
+
+  <label for='track_title'>Title:</label>
+  <input type='text' name='track[title]' id='track_title'
+         value='<%= @track.title %>'>
+  <br>
+
+  <label for='track_track_number'>Track #</label>
+  <input type='number' min=1 value='<%= @track.track_number %>'
+         name='track[track_number]' id='track_track_number'>
+  <br>
+
+  Bonus track?
+  <label for='bonus_track_true'>yes</label>
+  <input type='radio'
+         name='track[bonus?]'
+         value=true
+         id='bonus_track_true'
+         <%= @track.bonus? ? "checked" : "" %>>
+
+  <label for='bonus_track_false'>no</label>
+  <input type='radio'
+         name='track[bonus?]'
+         value=false
+         id='bonus_track_false'
+         <%= @track.bonus? ? "" : "checked" %>>
+  <br>
+
+  <label for='track_album_id'>Album for this track:</label>
+  <select name='track[album_id]' id='track_album_id'>
+    <% @albums.each do |album| %>
+      <option <%= params[:album_id].to_i == album.id ? "selected" : "" %>
+       value="<%= album.id %>">
+        <%= album.title %>
+      </option>
+    <% end %>
+  </select><br>
+
+  <label for 'track_lyrics'>Enter your wonderful new lyrics below:<br></label>
+  <textarea name='track[lyrics]'><%= @track.lyrics %></textarea>
+  <br><br>
+
+  <input type='submit' value='Revise your artistic vision'>
+</form>

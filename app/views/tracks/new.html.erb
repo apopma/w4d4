@@ -12,6 +12,20 @@
          name='track[track_number]' id='track_track_number'>
   <br>
 
+  Bonus track?
+  <label for='bonus_track_true'>yes</label>
+  <input type='radio'
+         name='track[bonus?]'
+         value=true
+         id='bonus_track_true'>
+
+  <label for='bonus_track_false'>no</label>
+  <input type='radio'
+         name='track[bonus?]'
+         value=false
+         id='bonus_track_false'>
+  <br>
+
   <label for='track_album_id'>Album for this track:</label>
   <select name='track[album_id]' id='track_album_id'>
     <% @albums.each do |album| %>

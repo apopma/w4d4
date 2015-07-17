@@ -25,15 +25,27 @@ class TracksController < ApplicationController
 
   def edit
     @track = Track.find(params[:id])
+    @albums = @track.band.albums
     render :edit
   end
 
   def update
-    fail
+    @track = Track.find(params[:id])
+    @album = @track.album # same hack as in albums#update
+
+    if @track.update_attributes(track_params)
+      flash[:success] = ["'#{@track.title}' was successfully edited!"]
+      redirect_to track_url(@track.id)
+    else
+      flash[:errors] = ["Oops. Something went wrong:"]
+      flash[:errors].concat @track.errors.full_messages
+      redirect_to edit_track_url(@track.id)
+    end
   end
 
   private
   def track_params
-    params.require(:track).permit(:title, :track_number, :album_id, :lyrics)
+    params.require(:track)
+    .permit(:title, :track_number, :bonus?, :album_id, :lyrics)
   end
 end
