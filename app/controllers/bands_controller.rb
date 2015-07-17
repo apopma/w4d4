@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :ensure_logged_in, except: :index
+
   def index
     @bands = Band.all
     render :index
@@ -55,5 +57,12 @@ class BandsController < ApplicationController
   private
   def band_params
     params.require(:band).permit(:name)
+  end
+
+  def ensure_logged_in
+    unless logged_in?
+      flash[:errors] = ["Please login before doing that."]
+      redirect_to new_session_url
+    end
   end
 end

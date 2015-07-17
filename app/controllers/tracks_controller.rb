@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :ensure_logged_in
+
   def show
     @track = Track.find(params[:id])
     render :show
@@ -54,5 +56,12 @@ class TracksController < ApplicationController
   def track_params
     params.require(:track)
     .permit(:title, :track_number, :bonus?, :album_id, :lyrics)
+  end
+
+  def ensure_logged_in
+    unless logged_in?
+      flash[:errors] = ["Please login before doing that."]
+      redirect_to new_session_url
+    end
   end
 end
