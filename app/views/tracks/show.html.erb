@@ -11,7 +11,7 @@
 
 <h4>Lyrics:</h4>
 <p>
-  <% if @track.lyrics %>
+  <% unless @track.lyrics.empty? %>
     <%= @track.lyrics %>
   <% else %>
     <i>-instrumental-</i>
