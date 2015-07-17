@@ -12,9 +12,7 @@
 <h4>Lyrics:</h4>
 <p>
   <% unless @track.lyrics.empty? %>
-    <pre>
-      <%= @track.ugly_lyrics(@track.lyrics) %>
-    </pre>
+    <pre><%= @track.ugly_lyrics(@track.lyrics) %></pre>
   <% else %>
     <i>-instrumental-</i>
   <% end %>
