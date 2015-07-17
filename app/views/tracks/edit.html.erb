@@ -34,7 +34,7 @@
   <label for='track_album_id'>Album for this track:</label>
   <select name='track[album_id]' id='track_album_id'>
     <% @albums.each do |album| %>
-      <option <%= params[:album_id].to_i == album.id ? "selected" : "" %>
+      <option <%= @track.album_id == album.id ? "selected" : "" %>
        value="<%= album.id %>">
         <%= album.title %>
       </option>

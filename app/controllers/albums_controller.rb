@@ -2,12 +2,14 @@ class AlbumsController < ApplicationController
   before_action :ensure_logged_in
 
   def show
-    @album = Album.find(params[:id])
+    @album = Album.includes(:band, :tracks).find(params[:id])
     render :show
   end
 
   def new
     @bands = Band.all
+    @album = Album.new
+    @album.band_id = params[:band_id]
     render :new
   end
 

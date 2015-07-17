@@ -8,7 +8,7 @@
   <label for='album_band_id'>Recording band:</label>
   <select name='album[band_id]' id='album_band_id'>
     <% @bands.each do |band| %>
-      <option <%= params[:band_id].to_i == band.id ? "selected" : "" %>
+      <option <%= @album.band_id == band.id ? "selected" : "" %>
        value="<%= band.id %>">
         <%= band.name %>
       </option>

@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   before_action :ensure_logged_in
 
   def show
-    @track = Track.find(params[:id])
+    @track = Track.includes(:band, :album).find(params[:id])
     render :show
   end
 
